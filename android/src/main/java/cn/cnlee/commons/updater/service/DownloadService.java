@@ -15,6 +15,8 @@ import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.lzy.okgo.OkGo;
+
 import cn.cnlee.commons.updater.download.IDownloadManager;
 import cn.cnlee.commons.updater.R;
 import cn.cnlee.commons.updater.update.UpdateAppBean;
@@ -38,6 +40,7 @@ public class DownloadService extends Service {
     private DownloadBinder binder = new DownloadBinder();
     private NotificationCompat.Builder mBuilder;
     private boolean mDismissNotificationProgress = false;
+    private boolean mHandleCancel = false;
 
     public static void bindService(Context context, ServiceConnection connection) {
         Intent intent = new Intent(context, DownloadService.class);
@@ -79,6 +82,7 @@ public class DownloadService extends Service {
         }
 
 
+        mBuilder = new NotificationCompat.Builder(this);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
             //设置绕过免打扰模式
@@ -94,10 +98,11 @@ public class DownloadService extends Service {
             channel.enableLights(false);
 
             mNotificationManager.createNotificationChannel(channel);
+            mBuilder.setChannelId(CHANNEL_ID);
         }
 
 
-        mBuilder = new NotificationCompat.Builder(this);
+
         mBuilder.setContentTitle("开始下载")
                 .setContentText("正在连接服务器")
                 .setSmallIcon(R.mipmap.lib_update_app_update_icon)
@@ -141,6 +146,7 @@ public class DownloadService extends Service {
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             mNotificationManager.notify(NOTIFY_ID, notification);
         }
+        OkGo.getInstance().cancelAll();
         close();
     }
 
@@ -211,10 +217,12 @@ public class DownloadService extends Service {
          */
         public void start(UpdateAppBean updateApp, DownloadCallback callback) {
             //下载
+            mHandleCancel = false;
             startDownload(updateApp, callback);
         }
 
         public void stop(String msg) {
+            mHandleCancel = true;
             DownloadService.this.stop(msg);
         }
     }
@@ -260,12 +268,13 @@ public class DownloadService extends Service {
                 //重新赋值
                 oldRate = rate;
             }
-
-
         }
 
         @Override
         public void onError(String error) {
+            if (mHandleCancel){
+                error = "用户取消下载";
+            }
             Toast.makeText(DownloadService.this, "更新新版本出错，" + error, Toast.LENGTH_SHORT).show();
             //App前台运行
             if (mCallBack != null) {

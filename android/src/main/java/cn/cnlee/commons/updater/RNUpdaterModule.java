@@ -21,6 +21,8 @@ import cn.cnlee.commons.updater.utils.Strings;
 
 public class RNUpdaterModule extends ReactContextBaseJavaModule {
 
+    private final static String TAG = RNUpdaterModule.class.getSimpleName();
+
     private final ReactApplicationContext reactContext;
 
     public RNUpdaterModule(ReactApplicationContext reactContext) {
@@ -39,7 +41,7 @@ public class RNUpdaterModule extends ReactContextBaseJavaModule {
         UpdateAppBean updateAppBean = new UpdateAppBean();
         try {
             updateAppBean = (UpdateAppBean) ConvertUtil.mapToBean(map, UpdateAppBean.class);
-            Log.e(RNUpdaterModule.class.getSimpleName(),new JSONObject(map).toString());
+            Log.e(TAG, new JSONObject(map).toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,13 +54,18 @@ public class RNUpdaterModule extends ReactContextBaseJavaModule {
         }
         builder.setActivity(this.getCurrentActivity());
         if (updateAppBean.isForceDialog()) { //强制弹出提示框，主要用于设置里，手动版本检测更新
+            Log.e(TAG, "=====强制界面======");
             builder.build().update(updateAppBean);
         } else if (updateAppBean.isSilence()) { //强制静默下载更新，无论wifi还是移动数据
+            Log.e(TAG, "=====强制静默======");
             builder.build().silenceUpdate(updateAppBean);
         } else if (AppUpdateUtils.isWifi(this.reactContext)) {// wifi时静默
+            Log.e(TAG, "=====仅wifi静默======");
             builder.setOnlyWifi().build().silenceUpdate(updateAppBean);
         } else {//普通弹框
+            Log.e(TAG, "=====普通弹框======");
             builder.build().update(updateAppBean);
         }
     }
+
 }

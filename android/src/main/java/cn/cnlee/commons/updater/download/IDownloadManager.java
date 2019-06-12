@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * app版本更新接口

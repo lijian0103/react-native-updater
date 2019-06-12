@@ -1,6 +1,6 @@
 import {NativeModules, Platform, AlertIOS, Linking} from 'react-native';
 
-const {RNUpdater} = NativeModules;
+const {RNUpdater, RNTools} = NativeModules;
 
 const showUpdate =
     (isUpdate = false, isForceUpdate = false, url, versionName, updateContent) => {
@@ -40,7 +40,7 @@ const showUpdate =
         }
     };
 
-const CheckUpdate = (options) => {
+export const CheckUpdate = (options) => {
     if (options && Platform.OS === 'ios') {
         showUpdate(options.update, options.forced, options.updateUrl, options.versionName, options.updateContent);
     } else {
@@ -48,4 +48,11 @@ const CheckUpdate = (options) => {
     }
 };
 
-export default CheckUpdate;
+export const Tools = {
+    checkNotifyEnabled: () => {
+        return RNTools.checkNotifyEnabled();
+    },
+    openNotifySetting: () => {
+        RNTools.openNotifySetting();
+    },
+};
