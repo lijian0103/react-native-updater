@@ -73,7 +73,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     private LinearLayout mLlClose;
     //默认色
     private int mDefaultColor = 0xffe94339;
-    private int mDefaultPicResId = R.mipmap.lib_update_app_top_bg;
+    private int mDefaultPicResId = R.mipmap.top_1;
     private ImageView mTopIv;
     private TextView mIgnore;
     private IUpdateDialogFragmentListener mUpdateDialogFragmentListener;

@@ -17,7 +17,7 @@
             android:id="@+id/iv_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/lib_update_app_top_bg"/>
+            android:src="@mipmap/top_1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
