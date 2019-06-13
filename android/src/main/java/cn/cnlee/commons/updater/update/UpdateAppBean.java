@@ -44,24 +44,24 @@ public class UpdateAppBean implements Serializable {
     private boolean forceDialog;
     //静默下载，true 无论wifi还是流量都静默下载
     private boolean silence;
-
+    //点击升级按钮后 是否隐藏进度条
+    private boolean hideProgressBar;
     /**********以下是内部使用的数据**********/
 
     //下载工具，内部使用
     private IDownloadManager downloadManager;
     private String targetPath;
-    private boolean mHideDialog;
     private boolean mShowIgnoreVersion;
     private boolean mDismissNotificationProgress;
     private boolean mOnlyWifi;
 
     //是否隐藏对话框下载进度条,内部使用
-    public boolean isHideDialog() {
-        return mHideDialog;
+    public boolean isHideProgressBar() {
+        return hideProgressBar;
     }
 
-    public void setHideDialog(boolean hideDialog) {
-        mHideDialog = hideDialog;
+    public void setHideProgressBar(boolean hideProgressBar) {
+        this.hideProgressBar = hideProgressBar;
     }
 
     public IDownloadManager getDownloadManager() {

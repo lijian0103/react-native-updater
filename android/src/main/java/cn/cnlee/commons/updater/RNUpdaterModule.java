@@ -59,7 +59,7 @@ public class RNUpdaterModule extends ReactContextBaseJavaModule {
         } else if (updateAppBean.isSilence()) { //强制静默下载更新，无论wifi还是移动数据
             Log.e(TAG, "=====强制静默======");
             builder.build().silenceUpdate(updateAppBean);
-        } else if (AppUpdateUtils.isWifi(this.reactContext)) {// wifi时静默
+        } else if (!updateAppBean.isForced() && AppUpdateUtils.isWifi(this.reactContext)) {// wifi时静默
             Log.e(TAG, "=====仅wifi静默======");
             builder.setOnlyWifi().build().silenceUpdate(updateAppBean);
         } else {//普通弹框

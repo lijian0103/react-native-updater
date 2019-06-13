@@ -340,7 +340,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
         } else {
             downloadApp();
             //这里的隐藏对话框会和强制更新冲突，导致强制更新失效，所以当强制更新时，不隐藏对话框。
-            if (mUpdateApp.isHideDialog() && !mUpdateApp.isForced()) {
+            if (mUpdateApp.isHideProgressBar() && !mUpdateApp.isForced()) {
                 dismiss();
             }
 

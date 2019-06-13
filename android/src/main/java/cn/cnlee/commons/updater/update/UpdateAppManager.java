@@ -97,7 +97,7 @@ public class UpdateAppManager {
         if (mUpdateApp != null) {
             mUpdateApp.setTargetPath(mTargetPath);
             mUpdateApp.setDownloadManager(mDownloadManager);
-            mUpdateApp.setHideDialog(mHideDialog);
+//            mUpdateApp.setHideProgressBar(mHideDialog);
             mUpdateApp.showIgnoreVersion(mShowIgnoreVersion);
             mUpdateApp.dismissNotificationProgress(mDismissNotificationProgress);
             mUpdateApp.setOnlyWifi(mOnlyWifi);
