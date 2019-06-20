@@ -1,4 +1,4 @@
-# react-native-app-updater
+# react-native-updater
 
 ## Getting started
 
