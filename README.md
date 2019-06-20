@@ -1,12 +1,12 @@
-# react-native-updater
+# react-native-app-updater
 
 ## Getting started
 
-`$ npm install react-native-updater --save`
+`$ npm install react-native-app-updater --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-updater`
+`$ react-native link react-native-app-updater`
 
 ### Manual installation
 
@@ -18,19 +18,19 @@
   - Add `new RNUpdaterPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':react-native-updater'
-  	project(':react-native-updater').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-updater/android')
+  	include ':react-native-app-updater'
+  	project(':react-native-app-updater').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-app-updater/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-updater')
+      compile project(':react-native-app-updater')
   	```
 
 
 ## Usage
 使用说明
 ```javascript
-import {CheckUpdate, Tools} from 'react-native-updater';
+import {CheckUpdate, Tools} from 'react-native-app-updater';
 
 // 检测版本更新方法
 CheckUpdate(
