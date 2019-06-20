@@ -1,7 +1,7 @@
 {
   "name": "react-native-app-updater",
   "title": "React Native Updater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "app本地代码升级器，安卓直接下载，苹果跳转苹果商店",
   "main": "index.js",
   "scripts": {
@@ -23,12 +23,10 @@
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "peerDependencies": {
-    
     "react": "^16.5.1",
     "react-native": "^0.57.2"
   },
   "devDependencies": {
-    
     "react": "^16.5.1",
     "react-native": "^0.57.2"
   }
