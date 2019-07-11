@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import cn.cnlee.commons.updater.download.DefaultDownloadManager;
 import cn.cnlee.commons.updater.download.IDownloadManager;
@@ -177,7 +178,9 @@ public class UpdateAppManager {
             return;
         }
         if (DownloadService.isRunning || UpdateDialogFragment.isShow) {
-//            Toast.makeText(mActivity, "app正在更新", Toast.LENGTH_SHORT).show();
+            if (updateAppBean.isForceDialog()){
+                Toast.makeText(mActivity, "软件正在更新请稍候!", Toast.LENGTH_SHORT).show();
+            }
             return;
         }
 

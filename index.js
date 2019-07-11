@@ -4,7 +4,7 @@ const {RNUpdater, RNTools} = NativeModules;
 
 const showUpdate =
     (isUpdate = false, isForceUpdate = false, url, versionName, updateContent) => {
-        let title = `是否升级到${versionName}版本？`;
+        let title = `发现新版本，是否升级到${versionName}版本？`;
         if (isForceUpdate) {
             AlertIOS.alert(
                 title,
